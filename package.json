@@ -1,0 +1,46 @@
+{
+  "author": {
+    "name": "Karify B.V.",
+    "email": "questions@karify.com",
+    "url": "https://www.karify.com"
+  },
+  "contributors": [
+    {
+      "name": "Bruno Sampaio",
+      "email": "bruno.sampaio@karify.com",
+      "url": "http://bensampaio.github.io/"
+    }
+  ],
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "imagemin": "^5.2.2",
+    "imagemin-svgo": "^5.1.0",
+    "loader-utils": "^0.2.15"
+  },
+  "description": "A webpack loader and plugin that generate SVG sprites out of a collection of SVG files used in your JS and CSS files",
+  "devDependencies": {
+    "eslint": "^3.2.2"
+  },
+  "engines": {
+    "node": ">=6.2.0",
+    "npm": ">=3.8.0"
+  },
+  "files": [
+    "lib",
+    "index.js"
+  ],
+  "keywords": [
+    "svg",
+    "webpack",
+    "webpack-loader"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "external-svg-sprite-loader",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Karify/external-svg-sprite-loader.git"
+  },
+  "scripts": {},
+  "version": "1.0.0"
+}

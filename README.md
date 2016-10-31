@@ -6,6 +6,8 @@ A loader and plugin for webpack that converts all your SVGs into symbols and mer
 
 You will need NodeJS v6+, npm v3+ and webpack.
 
+To make it work in Internet Explorer you will also need [SVG for Everybody](https://github.com/jonathantneal/svg4everybody).
+
 ## Installation
 
 ```bash
@@ -59,12 +61,10 @@ The imported SVG will always correspond to a JavaScript object with keys `symbol
 - The `viewBox` value is required by some browsers on the `<svg>` tag.
 
 The URLs will have the following format:
-- `symbol`: <webpackConfig.output.publicPath>/<loader.name>#<loader.prefix>-<your-svg-file-name>-<icon-file-hash>
-- `view`: <webpackConfig.output.publicPath>/<loader.name>#view-<loader.prefix>-<your-svg-file-name>-<icon-file-hash>
+- `symbol`: `webpackConfig.output.publicPath`/`loader.name`#`loader.prefix`-`your-svg-file-name`-`icon-file-hash`
+- `view`: `webpackConfig.output.publicPath`/`loader.name`#view-`loader.prefix`-`your-svg-file-name`-`icon-file-hash`
 
 ```js
-// src/Logo.jsx
-
 /*
  * {
  *  symbol: '/public/img/sprite.svg#icon-logo',

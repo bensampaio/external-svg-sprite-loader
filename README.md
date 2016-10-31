@@ -12,34 +12,100 @@ You will need NodeJS v6+, npm v3+ and webpack.
 npm i external-svg-sprite-loader
 ```
 
+## Options
+
+### Loader options
+
+- `name` - relative path to the sprite file (default: `img/sprite.svg`).
+- `prefix` - value to be prefixed to the icons name (default: `icon`).
+
+### Plugin options
+
+- `emit` - determines if the sprite is supposed to be emitted (default: true). Useful when generating server rendering bundles where you just need the SVG sprite URLs but not the sprite itself.
+
 ## Usage
+
+If you have the following webpack configuration:
 
 ```js
 // webpack.config.js
 
+import path from 'path';
 import SvgStorePlugin from 'external-svg-sprite-loader/lib/SvgStorePlugin';
-// or
-const SvgStorePlugin = require('external-svg-sprite-loader/lib/SvgStorePlugin');
 
 module.exports = {
     module: {
         loaders: [
             {
                 loader: 'external-svg-sprite',
-                test: /\.svg$/
-            }
-        ]
+                test: /\.svg$/,
+            },
+        ],
+    },
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        publicPath: '/',
     },
     plugins: [
-        new SvgStorePlugin()
-    ]
+        new SvgStorePlugin(),
+    ],
 };
 ```
 
-### Loader options
+You will be able to import your SVG files in your JavaScript files as shown below.
+The imported SVG will always correspond to a JavaScript object with keys `symbol`, `view` and `viewBox`:
+- The `symbol` url can be used on a `<use>` tag to display the icon;
+- The `view` url is supposed to be used in CSS;
+- The `viewBox` value is required by some browsers on the `<svg>` tag.
 
-- `name` - relative path to the sprite file (default: `img/sprite.svg`).
-- `prefix` - value to be prefixed to the icons name (default: `icon`).
+The URLs will have the following format:
+- `symbol`: <webpackConfig.output.publicPath>/<loader.name>#<loader.prefix>-<your-svg-file-name>-<icon-file-hash>
+- `view`: <webpackConfig.output.publicPath>/<loader.name>#view-<loader.prefix>-<your-svg-file-name>-<icon-file-hash>
+
+```js
+// src/Logo.jsx
+
+/*
+ * {
+ *  symbol: '/public/img/sprite.svg#icon-logo',
+ *  view: '/public/img/sprite.svg#view-icon-logo',
+ *  viewBox: '0 0 150 100'
+ * }
+ */
+import logo from './images/logo.svg';
+
+class {
+
+    render() {
+        return (
+            <svg viewBox={logo.viewBox}>
+                <use xlinkHref={logo.symbol} />
+            </svg>
+        );
+    }
+    
+}
+```
+
+In CSS files, you can import your SVG files as shown bellow (assuming you are using the [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin)).
+The imported value will be converted into the `view` url shown above.
+
+```css
+.special-icon {
+    /* the url will be replaced with the url to the sprite */
+    background-image: url('./icons/special.svg') no-repeat 0; 
+}
+```
+
+## Examples
+
+You can find working examples in the `examples` folder. To test them under the example folder run:
+
+`npm install`
+
+`npm start`
+
+And then you can see the result in `http://localhost:3000`.
 
 ## Contributing
 

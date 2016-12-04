@@ -41,6 +41,8 @@
     "type": "git",
     "url": "http://github.com/Karify/external-svg-sprite-loader.git"
   },
-  "scripts": {},
-  "version": "1.0.1"
+  "scripts": {
+    "lint": "eslint index.js lib examples"
+  },
+  "version": "1.0.2"
 }

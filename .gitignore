@@ -1,5 +1,6 @@
 .DS_Store
 .idea
+npm-debug.log
 node_modules
 /examples/**/public/css
 /examples/**/public/img

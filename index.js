@@ -40,7 +40,7 @@ const DEFAULT_SVGO_OPTIONS = {
  * @param {Buffer} content - the content of the SVG file.
  */
 function loader(content) {
-    const { addDependency, resourcePath, options: { output: publicPath } } = this;
+    const { addDependency, resourcePath, options: { output: { publicPath } } } = this;
 
     // Get callback because the SVG is going to be optimized and that is an async operation
     const callback = this.async();

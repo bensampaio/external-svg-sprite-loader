@@ -41,6 +41,7 @@ const DEFAULT_SVGO_OPTIONS = {
  */
 function loader(content) {
     const { addDependency, resourcePath } = this;
+    const publicPath = this.options.output.publicPath.replace(/\/+$/, '');
 
     // Get callback because the SVG is going to be optimized and that is an async operation
     const callback = this.async();
@@ -73,8 +74,8 @@ function loader(content) {
             callback(
                 null,
                 `module.exports = {
-                    symbol: '${icon.getUrlToSymbol()}',
-                    view: '${icon.getUrlToView()}',
+                    symbol: '${publicPath}${icon.getUrlToSymbol()}',
+                    view: '${publicPath}${icon.getUrlToView()}',
                     viewBox: '${icon.getDocument().getViewBox()}',
                     toString: function () {
                         return this.view;

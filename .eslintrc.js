@@ -6,8 +6,11 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
+        "plugin:react/recommended",
     ],
-    "globals": {},
+    "globals": {
+        "document": true,
+    },
     "installedESLint": true,
     "parserOptions": {
         "ecmaFeatures": {},

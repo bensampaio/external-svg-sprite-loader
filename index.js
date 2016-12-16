@@ -14,6 +14,7 @@ const SvgStorePlugin = require('./lib/SvgStorePlugin');
 const DEFAULT_QUERY_VALUES = {
     name: 'img/sprite.svg',
     prefix: 'icon',
+    hashedID: true
 };
 
 /**
@@ -22,15 +23,7 @@ const DEFAULT_QUERY_VALUES = {
  * @type {Object}
  */
 const DEFAULT_SVGO_OPTIONS = {
-    plugins: [
-        { collapseGroups: true },
-        { convertPathData: true },
-        { convertStyleToAttrs: true },
-        { convertTransform: true },
-        { removeDesc: true },
-        { removeDimensions: true },
-        { removeTitle: true },
-    ],
+    removeTitle: true
 };
 
 /**
@@ -49,7 +42,7 @@ function loader(content) {
     const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.parseQuery(this.query));
 
     // Get the SVGO options either from the configuration or from the defaults
-    const svgoOptions = loaderUtils.getLoaderConfig(this, 'svgoOptions') || DEFAULT_SVGO_OPTIONS;
+    const svgoOptions = DEFAULT_SVGO_OPTIONS;
 
     // Add the icon as a dependency
     addDependency(resourcePath);
@@ -58,13 +51,21 @@ function loader(content) {
     imagemin
         .buffer(content, {
             plugins: [
-                imageminSvgo(svgoOptions),
+                imageminSvgo( {
+                    plugins: [
+                        svgoOptions
+                    ]
+                } )
             ],
         })
         .then((content) => {
 
-            // Create an hash of the optimized content to be appended to the icon name
-            const hash = loaderUtils.getHashDigest(content, 'md5', 'hex', 5);
+            let hash = '';
+
+            // // Create an hash of the optimized content to be appended to the icon name
+            if ( query.hashedID ) {
+                hash = loaderUtils.getHashDigest(content, 'md5', 'hex', 5);
+            }
 
             // Register the sprite and icon
             const icon = SvgStorePlugin.getSprite(query.name).addIcon(resourcePath, query.prefix, hash, content.toString());

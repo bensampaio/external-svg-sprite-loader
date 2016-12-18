@@ -22,9 +22,11 @@ const DEFAULT_QUERY_VALUES = {
  * @const
  * @type {Object}
  */
-const DEFAULT_SVGO_OPTIONS = {
-    removeTitle: true
-};
+const DEFAULT_SVGO_OPTIONS = [
+    { removeDesc: true },
+    { removeDimensions: true },
+    { removeTitle: true },
+];
 
 /**
  * Applies SVGO on the SVG file.
@@ -42,7 +44,7 @@ function loader(content) {
     const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.parseQuery(this.query));
 
     // Get the SVGO options either from the configuration or from the defaults
-    const svgoOptions = DEFAULT_SVGO_OPTIONS;
+    const svgoOptions = loaderUtils.getLoaderConfig(this).svgoOptions || DEFAULT_SVGO_OPTIONS;
 
     // Add the icon as a dependency
     addDependency(resourcePath);
@@ -52,9 +54,7 @@ function loader(content) {
         .buffer(content, {
             plugins: [
                 imageminSvgo( {
-                    plugins: [
-                        svgoOptions
-                    ]
+                    plugins: svgoOptions
                 } )
             ],
         })

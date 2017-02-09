@@ -13,14 +13,14 @@
   ],
   "dependencies": {
     "cheerio": "^0.20.0",
-    "eslint-plugin-react": "^6.8.0",
     "imagemin": "^5.2.2",
     "imagemin-svgo": "^5.1.0",
     "loader-utils": "^0.2.15"
   },
   "description": "A webpack loader and plugin that generate SVG sprites out of a collection of SVG files used in your JS and CSS files",
   "devDependencies": {
-    "eslint": "^3.2.2"
+    "eslint": "^3.2.2",
+    "eslint-plugin-react": "^6.8.0"
   },
   "engines": {
     "node": ">=6.2.0",

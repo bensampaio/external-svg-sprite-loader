@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 
 import styles from './Example.css';
 
+/**
+ * @class ExampleCSSIcon
+ */
 export default class ExampleCSSIcon extends Component {
 
+    /**
+     * Renders the CSS Icon example.
+     * @returns {XML}
+     */
     render() {
         return (
             <div>

@@ -2,8 +2,15 @@ import React, { Component } from 'react';
 
 import exampleIcon from '../../images/example.svg';
 
+/**
+ * @class ExampleSVGIcon
+ */
 export default class ExampleSVGIcon extends Component {
 
+    /**
+     * Renders the SVG Icon example.
+     * @returns {XML}
+     */
     render() {
         return (
             <div>

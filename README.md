@@ -42,7 +42,7 @@ module.exports = {
     module: {
         rules: [
             {
-                loader: 'external-svg-sprite',
+                loader: 'external-svg-sprite-loader',
                 test: /\.svg$/,
             },
         ],

@@ -7,17 +7,26 @@ module.exports = {
         main: path.resolve(__dirname, 'src', 'index.jsx'),
     },
     module: {
-        loaders: [
+        rules: [
             {
-                loader: 'babel',
+                loader: 'babel-loader',
                 test: /\.jsx?$/,
             },
             {
-                loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]--[local]___[hash:base64:5]'),
+                loader: ExtractTextPlugin.extract({
+                    use: {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            importLoaders: 1,
+                            localIdentName: '[name]--[local]__[hash:base64:5]',
+                        },
+                    },
+                }),
                 test: /\.css$/,
             },
             {
-                loader: 'external-svg-sprite',
+                loader: 'external-svg-sprite-loader',
                 test: /\.svg$/,
             },
         ],
@@ -28,7 +37,10 @@ module.exports = {
         publicPath: '/',
     },
     plugins: [
-        new ExtractTextPlugin('css/[name].css', { allChunks: true }),
+        new ExtractTextPlugin({
+            allChunks: true,
+            filename: 'css/[name].css',
+        }),
         new SvgStorePlugin(),
     ],
 };

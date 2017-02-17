@@ -14,23 +14,17 @@ const SvgStorePlugin = require('./lib/SvgStorePlugin');
 const DEFAULT_QUERY_VALUES = {
     name: 'img/sprite.svg',
     prefix: 'icon',
-};
-
-/**
- * Default options for the SVGO plugin.
- * @const
- * @type {Object}
- */
-const DEFAULT_SVGO_OPTIONS = {
-    plugins: [
-        { collapseGroups: true },
-        { convertPathData: true },
-        { convertStyleToAttrs: true },
-        { convertTransform: true },
-        { removeDesc: true },
-        { removeDimensions: true },
-        { removeTitle: true },
-    ],
+    svgoOptions: {
+        plugins: [
+            { collapseGroups: true },
+            { convertPathData: true },
+            { convertStyleToAttrs: true },
+            { convertTransform: true },
+            { removeDesc: true },
+            { removeDimensions: true },
+            { removeTitle: true },
+        ],
+    },
 };
 
 /**
@@ -48,9 +42,6 @@ function loader(content) {
     // Parse the loader query and apply the default values in case no values are provided
     const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.parseQuery(this.query));
 
-    // Get the SVGO options either from the configuration or from the defaults
-    const svgoOptions = loaderUtils.getLoaderConfig(this, 'svgoOptions') || DEFAULT_SVGO_OPTIONS;
-
     // Add the icon as a dependency
     addDependency(resourcePath);
 
@@ -61,7 +52,7 @@ function loader(content) {
     imagemin
         .buffer(content, {
             plugins: [
-                imageminSvgo(svgoOptions),
+                imageminSvgo(query.svgoOptions),
             ],
         })
         .then((content) => {

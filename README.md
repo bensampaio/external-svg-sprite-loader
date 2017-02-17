@@ -23,6 +23,7 @@ npm i external-svg-sprite-loader
 
 - `name` - relative path to the sprite file (default: `img/sprite.svg`). The `[hash]` placeholder is supported.
 - `prefix` - value to be prefixed to the icons name (default: `icon`).
+- `svgoOptions` - custom options to be passed to svgo.
 
 ### Plugin options
 

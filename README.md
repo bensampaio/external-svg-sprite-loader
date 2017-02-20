@@ -9,7 +9,7 @@ A loader and plugin for webpack that converts all your SVGs into symbols and mer
 
 You will need NodeJS v6+, npm v3+ and webpack 2.
 
-To make it work in Internet Explorer you will also need [SVG for Everybody](https://github.com/jonathantneal/svg4everybody).
+To make it work in older browsers, like Internet Explorer, you will also need [SVG for Everybody](https://github.com/jonathantneal/svg4everybody) or [svgxuse](https://github.com/Keyamoon/svgxuse).
 
 ## Installation
 

@@ -40,7 +40,7 @@ function loader(content) {
     const callback = this.async();
 
     // Parse the loader query and apply the default values in case no values are provided
-    const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.parseQuery(this.query));
+    const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.getOptions(this));
 
     // Add the icon as a dependency
     addDependency(resourcePath);

@@ -35,19 +35,22 @@ const DEFAULT_SVGO_OPTIONS = [
  * @param {Buffer} content - the content of the SVG file.
  */
 function loader(content) {
-    const { addDependency, resourcePath, options: { output: { publicPath } } } = this;
+    const { addDependency, cacheable, resourcePath, options: { output: { publicPath } } } = this;
 
     // Get callback because the SVG is going to be optimized and that is an async operation
     const callback = this.async();
 
     // Parse the loader query and apply the default values in case no values are provided
-    const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.parseQuery(this.query));
+    const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.getOptions(this));
 
     // Get the SVGO options either from the configuration or from the defaults
-    const svgoOptions = loaderUtils.getLoaderConfig(this).svgoOptions || DEFAULT_SVGO_OPTIONS;
+    const svgoOptions = query.svgoOptions || DEFAULT_SVGO_OPTIONS;
 
     // Add the icon as a dependency
     addDependency(resourcePath);
+
+    // Set the loader as not cacheable
+    cacheable(false);
 
     // Start optimizing the SVG file
     imagemin

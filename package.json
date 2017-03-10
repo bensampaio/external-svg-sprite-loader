@@ -15,7 +15,7 @@
     "cheerio": "^0.20.0",
     "imagemin": "^5.2.2",
     "imagemin-svgo": "^5.1.0",
-    "loader-utils": "^0.2.15"
+    "loader-utils": "^1.0.3"
   },
   "description": "A webpack loader and plugin that generate SVG sprites out of a collection of SVG files used in your JS and CSS files",
   "engines": {
@@ -41,5 +41,5 @@
   "scripts": {
     "lint": "eslint index.js lib examples --ext=js,jsx"
   },
-  "version": "1.0.6"
+  "version": "1.1.0"
 }

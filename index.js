@@ -34,7 +34,7 @@ const DEFAULT_QUERY_VALUES = {
  * @param {Buffer} content - the content of the SVG file.
  */
 function loader(content) {
-    const { addDependency, cacheable, resourcePath, options: { output: { publicPath } } } = this;
+    const { addDependency, cacheable, resourcePath } = this;
 
     // Get callback because the SVG is going to be optimized and that is an async operation
     const callback = this.async();
@@ -66,12 +66,13 @@ function loader(content) {
             // Export the icon as a metadata object that contains urls to be used on an <img/> in HTML or url() in CSS
             callback(
                 null,
-                `module.exports = {
-                    symbol: '${icon.getUrlToSymbol(publicPath)}',
-                    view: '${icon.getUrlToView(publicPath)}',
+                `var publicPath = __webpack_public_path__;
+                module.exports = {
+                    symbol: publicPath + '${icon.getUrlToSymbol()}',
+                    view: publicPath + '${icon.getUrlToView()}',
                     viewBox: '${icon.getDocument().getViewBox()}',
                     toString: function () {
-                        return this.view;
+                        return JSON.stringify(this.view);
                     }
                 };`
             );

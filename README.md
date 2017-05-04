@@ -65,8 +65,8 @@ The imported SVG will always correspond to a JavaScript object with keys `symbol
 - The `viewBox` value is required by some browsers on the `<svg>` tag.
 
 The URLs will have the following format:
-- `symbol`: `webpackConfig.output.publicPath`/`loader.name`#`loader.prefix`-`your-svg-file-name`-`icon-file-hash`
-- `view`: `webpackConfig.output.publicPath`/`loader.name`#view-`loader.prefix`-`your-svg-file-name`-`icon-file-hash`
+- `symbol`: `webpackConfig.output.publicPath`/`loader.name`#`loader.iconName`
+- `view`: `webpackConfig.output.publicPath`/`loader.name`#view-`loader.iconName`
 
 ```js
 /*

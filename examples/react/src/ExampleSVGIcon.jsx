@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import exampleIcon from '../../images/example.svg';
+import codeIcon from '../../images/code.svg';
+import tailIcon from '../../images/tail.svg';
+import styles from './ExampleSVGIcon.css';
 
 /**
  * @class ExampleSVGIcon
@@ -16,9 +18,14 @@ export default class ExampleSVGIcon extends Component {
             <div>
                 <h1>Example SVG Icon</h1>
                 <p>This is an SVG icon rendered via SVG</p>
-                <svg viewBox={exampleIcon.viewBox}>
-                    <use xlinkHref={exampleIcon.symbol} />
-                </svg>
+                <div className={styles.icons}>
+                    <svg className={styles.icon} viewBox={codeIcon.viewBox}>
+                        <use xlinkHref={codeIcon.symbol} />
+                    </svg>
+                    <svg className={styles.icon} viewBox={tailIcon.viewBox}>
+                        <use xlinkHref={tailIcon.symbol} />
+                    </svg>
+                </div>
             </div>
         );
     }

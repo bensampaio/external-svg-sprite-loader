@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import styles from './Example.css';
+import styles from './ExampleCSSIcon.css';
 
 /**
  * @class ExampleCSSIcon
@@ -16,7 +16,8 @@ export default class ExampleCSSIcon extends Component {
             <div>
                 <h1>Example CSS Icon</h1>
                 <p>This is an SVG icon rendered via CSS</p>
-                <div className={styles.icon} />
+                <div className={styles.code} />
+                <div className={styles.tail} />
             </div>
         );
     }

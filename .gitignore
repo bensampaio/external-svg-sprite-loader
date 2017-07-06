@@ -2,6 +2,4 @@
 .idea
 npm-debug.log
 node_modules
-/examples/**/public/css
-/examples/**/public/img
-/examples/**/public/js
+/examples/**/public/build

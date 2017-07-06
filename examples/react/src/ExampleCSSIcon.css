@@ -1,0 +1,13 @@
+.code {
+    background: url('../../images/code.svg') no-repeat 0;
+    background-size: 150px 100px;
+    height: 100px;
+    width: 150px;
+}
+
+.tail {
+    background: url('../../images/tail.svg') no-repeat 0;
+    background-size: 150px 100px;
+    height: 100px;
+    width: 150px;
+}

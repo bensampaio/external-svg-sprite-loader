@@ -22,7 +22,6 @@ const DEFAULT_QUERY_VALUES = {
             { convertTransform: true },
             { removeDesc: true },
             { removeDimensions: true },
-            { removeTitle: true },
         ],
     },
 };
@@ -71,6 +70,7 @@ function loader(content) {
                     symbol: publicPath + '${icon.getUrlToSymbol()}',
                     view: publicPath + '${icon.getUrlToView()}',
                     viewBox: '${icon.getDocument().getViewBox()}',
+                    title: '${icon.getDocument().getTitle()}',
                     toString: function () {
                         return JSON.stringify(this.view);
                     }

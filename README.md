@@ -84,12 +84,12 @@ class {
 
     render() {
         return (
-            <svg viewBox={logo.viewBox} title={logo.title}>
+            <svg viewBox={logo.viewBox} title={logo.title} role="img">
                 <use xlinkHref={logo.symbol} />
             </svg>
         );
     }
-    
+
 }
 ```
 
@@ -99,7 +99,7 @@ The imported value will be converted into the `view` url shown above.
 ```css
 .special-icon {
     /* the url will be replaced with the url to the sprite */
-    background-image: url('./icons/special.svg') no-repeat 0; 
+    background-image: url('./icons/special.svg') no-repeat 0;
 }
 ```
 

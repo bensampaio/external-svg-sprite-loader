@@ -62,7 +62,8 @@ You will be able to import your SVG files in your JavaScript files as shown belo
 The imported SVG will always correspond to a JavaScript object with keys `symbol`, `view` and `viewBox`:
 - The `symbol` url can be used on a `<use>` tag to display the icon;
 - The `view` url is supposed to be used in CSS;
-- The `viewBox` value is required by some browsers on the `<svg>` tag.
+- The `viewBox` value is required by some browsers on the `<svg>` tag;
+- The `title` value can be used on the `<svg>` tag for accessibility.
 
 The URLs will have the following format:
 - `symbol`: `webpackConfig.output.publicPath`/`loader.name`#`loader.iconName`
@@ -73,7 +74,8 @@ The URLs will have the following format:
  * {
  *  symbol: '/public/img/sprite.svg#icon-logo',
  *  view: '/public/img/sprite.svg#view-icon-logo',
- *  viewBox: '0 0 150 100'
+ *  viewBox: '0 0 150 100',
+ *  title: 'Logo'
  * }
  */
 import logo from './images/logo.svg';
@@ -82,12 +84,12 @@ class {
 
     render() {
         return (
-            <svg viewBox={logo.viewBox}>
+            <svg viewBox={logo.viewBox} title={logo.title} role="img">
                 <use xlinkHref={logo.symbol} />
             </svg>
         );
     }
-    
+
 }
 ```
 
@@ -97,7 +99,7 @@ The imported value will be converted into the `view` url shown above.
 ```css
 .special-icon {
     /* the url will be replaced with the url to the sprite */
-    background-image: url('./icons/special.svg') no-repeat 0; 
+    background-image: url('./icons/special.svg') no-repeat 0;
 }
 ```
 

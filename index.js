@@ -66,7 +66,7 @@ function loader(content) {
             setImmediate(() => {
                 callback(
                     null,
-                    `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__' };
+                    `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__'};
                     module.exports = {
                         symbol: publicPath + '${icon.getUrlToSymbol()}',
                         view: publicPath + '${icon.getUrlToView()}',

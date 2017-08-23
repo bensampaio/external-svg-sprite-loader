@@ -17,16 +17,20 @@ To make it work in older browsers, like Internet Explorer, you will also need [S
 npm i external-svg-sprite-loader
 ```
 
+or
+
+```bash
+yarn add external-svg-sprite-loader
+```
+
 ## Options
 
 ### Loader options
 
 - `name` - relative path to the sprite file (default: `img/sprite.svg`). The `[hash]` placeholder is supported.
 - `iconName` - name for the icon symbol (default: `icon-[name]-[hash:5]`).
+- `publicPath` - custom public path to be used instead of webpack `output.publicPath`. This option might be useful when your webpack `output.publicPath` is set to a different scheme/host/port (e.g.: when you use a CDN). This is because currently the SVG sprite cannot be served from another domain ([read more](https://stackoverflow.com/questions/32850536/cross-domain-svg-sprite)).
 - `svgoOptions` - custom options to be passed to svgo.
-- `publicPath` - custom public path to be used instead of webpack `output.publicPath`
-
-This `publicPath` option might be useful when your webpack `output.publicPath` is set to a different scheme/host/port (e.g.: when you use a CDN). This is because currently the SVG sprite cannot be served from another domain ([read more](https://stackoverflow.com/questions/32850536/cross-domain-svg-sprite)).
 
 ### Plugin options
 
@@ -83,17 +87,11 @@ The URLs will have the following format:
  */
 import logo from './images/logo.svg';
 
-class {
-
-    render() {
-        return (
-            <svg viewBox={logo.viewBox} title={logo.title} role="img">
-                <use xlinkHref={logo.symbol} />
-            </svg>
-        );
-    }
-
-}
+const Logo = () => (
+   <svg viewBox={logo.viewBox} title={logo.title} role="img">
+       <use xlinkHref={logo.symbol} />
+   </svg>
+);
 ```
 
 In CSS files, you can import your SVG files as shown bellow (assuming you are using the [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin)).

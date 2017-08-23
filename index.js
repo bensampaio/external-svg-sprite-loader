@@ -65,7 +65,7 @@ function loader(content) {
             // Export the icon as a metadata object that contains urls to be used on an <img/> in HTML or url() in CSS
             callback(
                 null,
-                `var publicPath = __webpack_public_path__;
+                `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__' };
                 module.exports = {
                     symbol: publicPath + '${icon.getUrlToSymbol()}',
                     view: publicPath + '${icon.getUrlToView()}',

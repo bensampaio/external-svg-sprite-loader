@@ -63,22 +63,24 @@ function loader(content) {
             const icon = SvgStorePlugin.getSprite(query.name).addIcon(resourcePath, iconName, content.toString());
 
             // Export the icon as a metadata object that contains urls to be used on an <img/> in HTML or url() in CSS
-            callback(
-                null,
-                `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__' };
-                module.exports = {
-                    symbol: publicPath + '${icon.getUrlToSymbol()}',
-                    view: publicPath + '${icon.getUrlToView()}',
-                    viewBox: '${icon.getDocument().getViewBox()}',
-                    title: '${icon.getDocument().getTitle()}',
-                    toString: function () {
-                        return JSON.stringify(this.view);
-                    }
-                };`
-            );
+            setImmediate(() => {
+                callback(
+                    null,
+                    `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__' };
+                    module.exports = {
+                        symbol: publicPath + '${icon.getUrlToSymbol()}',
+                        view: publicPath + '${icon.getUrlToView()}',
+                        viewBox: '${icon.getDocument().getViewBox()}',
+                        title: '${icon.getDocument().getTitle()}',
+                        toString: function () {
+                            return JSON.stringify(this.view);
+                        }
+                    };`
+                );
+            });
         })
         .catch((err) => {
-            callback(err);
+            setImmediate(() => callback(err));
         });
 }
 

@@ -26,6 +26,7 @@ const DEFAULT_SVGO_OPTIONS = [
     { removeDesc: true },
     { removeDimensions: true },
     { removeTitle: true },
+    { removeViewBox: false },
 ];
 
 /**

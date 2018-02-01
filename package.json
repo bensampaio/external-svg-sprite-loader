@@ -51,5 +51,5 @@
   "scripts": {
     "lint": "eslint index.js lib examples --ext=js,jsx"
   },
-  "version": "3.3.0"
+  "version": "3.3.1"
 }

@@ -35,6 +35,7 @@ yarn add external-svg-sprite-loader
 ### Plugin options
 
 - `emit` - determines if the sprite is supposed to be emitted (default: true). Useful when generating server rendering bundles where you just need the SVG sprite URLs but not the sprite itself.
+- `sprite` - SVG sprite options (default: {startX: 0, startY: 0, deltaX: 0, deltaY: 0, iconHeight: 50}). StartX and StartY - beginning sprite position, DeltaX and DeltaY - free space between icons. IconHeight - Icon height in the sprite (just for the comfort)
 
 ## Usage
 
@@ -60,7 +61,16 @@ module.exports = {
         publicPath: '/',
     },
     plugins: [
-        new SvgStorePlugin(),
+        new SvgStorePlugin({
+            sprite: 
+                {
+                    startX: 10,
+                    startY: 10,
+                    deltaX: 20,
+                    deltaY: 20,
+                    iconHeight: 20
+                }
+        }),
     ],
 };
 ```

@@ -1,5 +1,6 @@
 .DS_Store
 .idea
 npm-debug.log
+yarn-error.log
 node_modules
 /examples/**/public/build

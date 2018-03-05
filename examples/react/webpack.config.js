@@ -6,6 +6,7 @@ module.exports = {
     entry: {
         main: path.resolve(__dirname, 'src', 'index.jsx'),
     },
+    mode: 'development',
     module: {
         rules: [
             {

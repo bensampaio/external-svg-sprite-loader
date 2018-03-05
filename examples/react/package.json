@@ -34,5 +34,6 @@
   "name": "external-svg-sprite-loader-react-example",
   "scripts": {
     "start": "webpack-dev-server --content-base public/ --port 3000"
-  }
+  },
+  "version": "3.4.0"
 }

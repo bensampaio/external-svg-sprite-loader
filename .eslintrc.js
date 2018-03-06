@@ -11,7 +11,6 @@ module.exports = {
     "globals": {
         "document": true,
     },
-    "installedESLint": true,
     "parserOptions": {
         "ecmaFeatures": {},
         "sourceType": "module"

@@ -7,7 +7,7 @@ A loader and plugin for webpack that converts all your SVGs into symbols and mer
 
 ## Requirements
 
-You will need NodeJS v6+, npm v3+ and webpack 3.
+You will need NodeJS v6+, npm v3+ and webpack 4.
 
 To make it work in older browsers, like Internet Explorer, you will also need [SVG for Everybody](https://github.com/jonathantneal/svg4everybody) or [svgxuse](https://github.com/Keyamoon/svgxuse).
 
@@ -45,9 +45,11 @@ If you have the following webpack configuration:
 // webpack.config.js
 
 import path from 'path';
+
 import SvgStorePlugin from 'external-svg-sprite-loader/lib/SvgStorePlugin';
 
 module.exports = {
+    mode: 'development',
     module: {
         rules: [
             {
@@ -57,7 +59,7 @@ module.exports = {
         ],
     },
     output: {
-        path: path.resolve(__dirname, 'public'),
+        path: path.join(__dirname, 'public'),
         publicPath: '/',
     },
     plugins: [

@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import styles from './ExampleCSSIcon.css';
 
 /**
- * @class ExampleCSSIcon
+ * @returns {ReactElement}
  */
-export default class ExampleCSSIcon extends Component {
+const ExampleCSSIcon = () => (
+    <div>
+        <h1>Example CSS Icon</h1>
+        <p>This is an SVG icon rendered via CSS</p>
+        <div className={styles.code} />
+        <div className={styles.tail} />
+    </div>
+);
 
-    /**
-     * Renders the CSS Icon example.
-     * @returns {XML}
-     */
-    render() {
-        return (
-            <div>
-                <h1>Example CSS Icon</h1>
-                <p>This is an SVG icon rendered via CSS</p>
-                <div className={styles.code} />
-                <div className={styles.tail} />
-            </div>
-        );
-    }
-
-}
+export default ExampleCSSIcon;

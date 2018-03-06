@@ -1,11 +1,13 @@
 const path = require('path');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SvgStorePlugin = require('external-svg-sprite-loader/lib/SvgStorePlugin');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, 'src', 'index.jsx'),
+        main: path.join(__dirname, 'src', 'index.jsx'),
     },
+    mode: 'development',
     module: {
         rules: [
             {
@@ -33,7 +35,7 @@ module.exports = {
     },
     output: {
         filename: 'js/[name].js',
-        path: path.resolve(__dirname, 'public', 'build'),
+        path: path.join(__dirname, 'public', 'build'),
         publicPath: '/',
     },
     plugins: [

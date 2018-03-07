@@ -21,6 +21,7 @@ const DEFAULT_QUERY_VALUES = {
             { convertStyleToAttrs: true },
             { convertTransform: true },
             { removeDesc: true },
+            { removeViewBox: false },
             { removeDimensions: true },
         ],
     },

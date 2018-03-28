@@ -1,7 +1,7 @@
 const path = require('path');
 
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SvgStorePlugin = require('external-svg-sprite-loader/lib/SvgStorePlugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
@@ -15,8 +15,9 @@ module.exports = {
                 test: /\.jsx?$/,
             },
             {
-                loader: ExtractTextPlugin.extract({
-                    use: {
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
                         loader: 'css-loader',
                         options: {
                             modules: true,
@@ -24,14 +25,29 @@ module.exports = {
                             localIdentName: '[name]--[local]__[hash:base64:5]',
                         },
                     },
-                }),
+                ],
                 test: /\.css$/,
             },
             {
                 loader: 'external-svg-sprite-loader',
+                options: {
+                    name: 'img/sprite.[hash].svg',
+                },
                 test: /\.svg$/,
             },
         ],
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'main',
+                    test: /\.css$/,
+                    chunks: 'all',
+                    enforce: true,
+                },
+            },
+        },
     },
     output: {
         filename: 'js/[name].js',
@@ -39,9 +55,9 @@ module.exports = {
         publicPath: '/',
     },
     plugins: [
-        new ExtractTextPlugin({
-            allChunks: true,
+        new MiniCssExtractPlugin({
             filename: 'css/[name].css',
+            chunkFilename: 'css/[id].css',
         }),
         new SvgStorePlugin(),
     ],

@@ -106,7 +106,7 @@ const Logo = () => (
 );
 ```
 
-In CSS files, you can import your SVG files as shown bellow (assuming you are using the [ExtractTextPlugin](https://github.com/webpack/extract-text-webpack-plugin)).
+In CSS files, you can import your SVG files as shown bellow (assuming you are using the [MiniCssExtractPlugin](https://github.com/webpack-contrib/mini-css-extract-plugin)).
 The imported value will be converted into the `view` url shown above.
 
 ```css

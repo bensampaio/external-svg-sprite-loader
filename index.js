@@ -13,21 +13,19 @@ const SvgStorePlugin = require('./lib/SvgStorePlugin');
  */
 const DEFAULT_QUERY_VALUES = {
     name: 'img/sprite.svg',
-    prefix: 'icon',
-    hashedID: true
+    iconName: 'icon-[name]-[hash:5]',
+    svgoOptions: {
+        plugins: [
+            { collapseGroups: true },
+            { convertPathData: true },
+            { convertStyleToAttrs: true },
+            { convertTransform: true },
+            { removeDesc: true },
+            { removeViewBox: false },
+            { removeDimensions: true },
+        ],
+    },
 };
-
-/**
- * Default options for the SVGO plugin.
- * @const
- * @type {Object}
- */
-const DEFAULT_SVGO_OPTIONS = [
-    { removeDesc: true },
-    { removeDimensions: true },
-    { removeTitle: true },
-    { removeViewBox: false },
-];
 
 /**
  * Applies SVGO on the SVG file.
@@ -36,16 +34,13 @@ const DEFAULT_SVGO_OPTIONS = [
  * @param {Buffer} content - the content of the SVG file.
  */
 function loader(content) {
-    const { addDependency, cacheable, resourcePath, options: { output: { publicPath } } } = this;
+    const { addDependency, cacheable, resourcePath } = this;
 
     // Get callback because the SVG is going to be optimized and that is an async operation
     const callback = this.async();
 
     // Parse the loader query and apply the default values in case no values are provided
     const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.getOptions(this));
-
-    // Get the SVGO options either from the configuration or from the defaults
-    const svgoOptions = query.svgoOptions || DEFAULT_SVGO_OPTIONS;
 
     // Add the icon as a dependency
     addDependency(resourcePath);
@@ -57,38 +52,36 @@ function loader(content) {
     imagemin
         .buffer(content, {
             plugins: [
-                imageminSvgo( {
-                    plugins: svgoOptions
-                } )
+                imageminSvgo(query.svgoOptions),
             ],
         })
         .then((content) => {
 
-            let hash = '';
-
-            // // Create an hash of the optimized content to be appended to the icon name
-            if ( query.hashedID ) {
-                hash = loaderUtils.getHashDigest(content, 'md5', 'hex', 5);
-            }
+            // Create the icon name with the hash of the optimized content
+            const iconName = loaderUtils.interpolateName(this, query.iconName, { content });
 
             // Register the sprite and icon
-            const icon = SvgStorePlugin.getSprite(query.name).addIcon(resourcePath, query.prefix, hash, content.toString());
+            const icon = SvgStorePlugin.getSprite(query.name).addIcon(resourcePath, iconName, content.toString());
 
             // Export the icon as a metadata object that contains urls to be used on an <img/> in HTML or url() in CSS
-            callback(
-                null,
-                `module.exports = {
-                    symbol: '${icon.getUrlToSymbol(publicPath)}',
-                    view: '${icon.getUrlToView(publicPath)}',
-                    viewBox: '${icon.getDocument().getViewBox()}',
-                    toString: function () {
-                        return this.view;
-                    }
-                };`
-            );
+            setImmediate(() => {
+                callback(
+                    null,
+                    `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__'};
+                    module.exports = {
+                        symbol: publicPath + '${icon.getUrlToSymbol()}',
+                        view: publicPath + '${icon.getUrlToView()}',
+                        viewBox: '${icon.getDocument().getViewBox()}',
+                        title: '${icon.getDocument().getTitle()}',
+                        toString: function () {
+                            return JSON.stringify(this.view);
+                        }
+                    };`
+                );
+            });
         })
         .catch((err) => {
-            callback(err);
+            setImmediate(() => callback(err));
         });
 }
 

@@ -13,11 +13,18 @@
   ],
   "dependencies": {
     "cheerio": "^0.20.0",
-    "imagemin": "^5.2.2",
-    "imagemin-svgo": "^5.1.0",
-    "loader-utils": "^1.0.3"
+    "imagemin": "^5.3.1",
+    "imagemin-svgo": "^6.0.0",
+    "loader-utils": "^1.0.2"
   },
   "description": "A webpack loader and plugin that generate SVG sprites out of a collection of SVG files used in your JS and CSS files",
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "peerDependencies": {
+    "webpack": "^4.1.0"
+  },
   "engines": {
     "node": ">=6.2.0",
     "npm": ">=3.8.0"
@@ -41,5 +48,5 @@
   "scripts": {
     "lint": "eslint index.js lib examples --ext=js,jsx"
   },
-  "version": "1.3.0"
+  "version": "4.0.0-beta.4"
 }

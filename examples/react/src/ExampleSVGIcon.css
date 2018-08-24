@@ -1,7 +1,15 @@
 .icons {
     display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.icon {
-    height: 150px;
+.icons li {
+    margin-right: 10px;
+}
+
+.icons svg {
+    display: block; /* Remove weird bottom margin */
+    width: 150px;
 }

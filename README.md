@@ -124,7 +124,7 @@ You can find working examples in the `examples` folder. To test them under the e
 
 ```bash
 npm install
-npm start
+npm start:dev
 ```
 
 And then you can see the result in `http://localhost:3000`.

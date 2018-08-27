@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         main: path.join(__dirname, 'src', 'index.jsx'),
     },
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
     module: {
         rules: [
             {

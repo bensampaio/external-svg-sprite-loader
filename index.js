@@ -28,9 +28,9 @@ const DEFAULT_QUERY_VALUES = {
 };
 
 /**
- * Applies SVGO on the SVG file.
- * Registers the SVG on the Sprites store.
- * Generates SVG metadata to be passed to JavaScript and CSS files.
+ * Applies SVGO on the SVG file in order to optimize its contents and remove unnecessary attributes for the sprite.
+ * Registers the SVG on the Sprites store so that the plugin has access to them.
+ * Generates SVG metadata to be passed to JavaScript and CSS files so that the symbols can be rendered.
  * @param {Buffer} content - the content of the SVG file.
  */
 function loader(content) {
@@ -69,7 +69,7 @@ function loader(content) {
             // We do this by adding a cache busting on the URL, with the following pattern: img/sprite.svg?icon-abcd#icon-abcd
             // It's important that the cache busting is not included initially so that it plays well with server-side rendering,
             // otherwise many view libraries will complain about mismatches during rehydration (such as React)
-            const hasSamePath = sprite.originalPath === sprite.currentPath;
+            const hasSamePath = sprite.originalResourcePath === sprite.resourcePath;
 
             setImmediate(() => {
                 callback(
@@ -78,13 +78,13 @@ function loader(content) {
                     var symbolUrl = '${icon.getUrlToSymbol()}';
                     var viewUrl = '${icon.getUrlToView()}';
 
-                    ${hasSamePath ? `
-                    var addCacheBust = typeof document !== 'undefined' ? document.readyState === 'complete' : false;
-
-                    if (addCacheBust) {
-                        symbolUrl = '${icon.getUrlToSymbol(true)}';
-                        viewUrl = '${icon.getUrlToView(true)}';
-                    }
+                    ${process.env.NODE_ENV !== 'production' && hasSamePath ? `
+                        var addCacheBust = typeof document !== 'undefined' && document.readyState === 'complete';
+    
+                        if (addCacheBust) {
+                            symbolUrl = '${icon.getUrlToSymbol(true)}';
+                            viewUrl = '${icon.getUrlToView(true)}';
+                        }
                     ` : '' }
 
                     module.exports = {

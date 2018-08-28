@@ -25,10 +25,7 @@ module.exports = {
             "error",
             "always"
         ],
-        "brace-style": [
-            "error",
-            "stroustrup"
-        ],
+        "brace-style": "error",
         "comma-dangle": [
             "error",
             "always-multiline"

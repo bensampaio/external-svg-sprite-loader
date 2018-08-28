@@ -50,5 +50,5 @@
   "scripts": {
     "lint": "eslint index.js lib examples --ext=js,jsx"
   },
-  "version": "4.0.0-beta.5"
+  "version": "4.0.0-beta.6"
 }

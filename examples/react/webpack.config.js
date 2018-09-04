@@ -52,7 +52,7 @@ module.exports = {
     output: {
         filename: 'js/[name].js',
         path: path.join(__dirname, 'public', 'build'),
-        publicPath: '/',
+        publicPath: '/build/',
     },
     plugins: [
         new MiniCssExtractPlugin({

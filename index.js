@@ -69,8 +69,6 @@ function loader(content) {
             // We do this by adding a cache busting on the URL, with the following pattern: img/sprite.svg?icon-abcd#icon-abcd
             // It's important that the cache busting is not included initially so that it plays well with server-side rendering,
             // otherwise many view libraries will complain about mismatches during rehydration (such as React)
-            const hasSamePath = sprite.originalResourcePath === sprite.resourcePath;
-
             setImmediate(() => {
                 callback(
                     null,
@@ -78,9 +76,9 @@ function loader(content) {
                     var symbolUrl = '${icon.getUrlToSymbol()}';
                     var viewUrl = '${icon.getUrlToView()}';
 
-                    ${process.env.NODE_ENV !== 'production' && hasSamePath ? `
+                    ${process.env.NODE_ENV !== 'production' && !sprite.hasHash ? `
                         var addCacheBust = typeof document !== 'undefined' && document.readyState === 'complete';
-    
+
                         if (addCacheBust) {
                             symbolUrl = '${icon.getUrlToSymbol(true)}';
                             viewUrl = '${icon.getUrlToView(true)}';

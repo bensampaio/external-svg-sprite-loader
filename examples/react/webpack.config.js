@@ -1,13 +1,13 @@
 const path = require('path');
 
-const SvgStorePlugin = require('external-svg-sprite-loader/lib/SvgStorePlugin');
+const SvgStorePlugin = require('../../lib/SvgStorePlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
         main: path.join(__dirname, 'src', 'index.jsx'),
     },
-    mode: 'development',
+    mode: process.env.NODE_ENV || 'development',
     module: {
         rules: [
             {
@@ -29,9 +29,9 @@ module.exports = {
                 test: /\.css$/,
             },
             {
-                loader: 'external-svg-sprite-loader',
+                loader: require.resolve('../..'),
                 options: {
-                    name: 'img/sprite.[hash].svg',
+                    name: process.env.EXAMPLE_NO_HASH ? 'img/sprite.svg' : 'img/sprite.[hash].svg',
                 },
                 test: /\.svg$/,
             },

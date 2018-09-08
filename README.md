@@ -116,15 +116,24 @@ The imported value will be converted into the `view` url shown above.
 }
 ```
 
+When a SVG gets added, removed or updated, the sprite will be re-generated and all files referencing it will be updated. When no `[hash]` is used in the `name` option, a cache-busting will be added to the URL so that the browser is forced to re-download the sprite.
+
 ## Examples
 
 You can find working examples in the `examples` folder. To test them under the example folder run:
 
-`npm install`
-
-`npm start`
+```bash
+npm install
+npm start:dev
+```
 
 And then you can see the result in `http://localhost:3000`.
+
+There's some additional start variants that you may try:
+
+- `npm start:hot` to check if sprite updates work with [Hot Module replacement](https://webpack.js.org/guides/hot-module-replacement/)
+- `npm start:no-hash` to check if sprite updates work, even if the outputted file is the same
+- `npm start:hot-no-hash` to check if sprite updates work with [Hot Module replacement](https://webpack.js.org/guides/hot-module-replacement/), even if the outputted file is the same
 
 ## Contributing
 

@@ -9,8 +9,15 @@ const ExampleCSSIcon = () => (
     <div>
         <h1>Example CSS Icon</h1>
         <p>This is an SVG icon rendered via CSS</p>
-        <div className={styles.code} />
-        <div className={styles.tail} />
+
+        <ul className={styles.icons}>
+            <li>
+                <i className={styles.code} />
+            </li>
+            <li>
+                <i className={styles.tail} />
+            </li>
+        </ul>
     </div>
 );
 

@@ -18,6 +18,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
     "mini-css-extract-plugin": "^0.4.0",
+    "prop-types": "^15.6.2",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-hot-loader": "^4.3.5",
@@ -35,9 +36,9 @@
   "name": "external-svg-sprite-loader-react-example",
   "scripts": {
     "start:dev": "webpack-dev-server --content-base public/ --port 3000",
-    "start:hot": "yarn start:dev --hot",
-    "start:no-hash": "EXAMPLE_NO_HASH=1 yarn start:dev",
-    "start:hot-no-hash": "EXAMPLE_NO_HASH=1 yarn start:hot",
+    "start:dev:hot": "yarn start:dev --hot",
+    "start:dev:no-hash": "EXAMPLE_NO_HASH=1 yarn start:dev",
+    "start:dev:hot-no-hash": "EXAMPLE_NO_HASH=1 yarn start:hot",
     "build:prd": "NODE_ENV=production webpack -p"
   },
   "version": "3.4.0"

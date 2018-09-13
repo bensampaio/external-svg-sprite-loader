@@ -1,13 +1,16 @@
+import React, { Fragment } from 'react';
 import { hot } from 'react-hot-loader';
-import React from 'react';
-import ExampleCSSIcon from './ExampleCSSIcon.jsx';
-import ExampleSVGIcon from './ExampleSVGIcon.jsx';
+
+import Complex from './Complex.jsx';
+import Glypho from './Glypho.jsx';
+import Education from './Education.jsx';
 
 const App = () => (
-    <div>
-        <ExampleCSSIcon />
-        <ExampleSVGIcon />
-    </div>
+    <Fragment>
+        <Complex />
+        <Education />
+        <Glypho />
+    </Fragment>
 );
 
 export default hot(module)(App);

@@ -31,9 +31,23 @@ module.exports = {
             {
                 loader: require.resolve('../..'),
                 options: {
-                    name: process.env.EXAMPLE_NO_HASH ? 'img/sprite.svg' : 'img/sprite.[hash].svg',
+                    name: process.env.EXAMPLE_NO_HASH ? 'img/complex.svg' : 'img/complex.[hash].svg',
                 },
-                test: /\.svg$/,
+                test: /complex\/\w+\.svg$/,
+            },
+            {
+                loader: require.resolve('../..'),
+                options: {
+                    name: process.env.EXAMPLE_NO_HASH ? 'img/education.svg' : 'img/education.[hash].svg',
+                },
+                test: /education\/\w+\.svg$/,
+            },
+            {
+                loader: require.resolve('../..'),
+                options: {
+                    name: process.env.EXAMPLE_NO_HASH ? 'img/glypho.svg' : 'img/glypho.[hash].svg',
+                },
+                test: /glypho\/\w+\.svg$/,
             },
         ],
     },
@@ -59,6 +73,13 @@ module.exports = {
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css',
         }),
-        new SvgStorePlugin(),
+        new SvgStorePlugin({
+            sprite: {
+                startX: 20,
+                startY: 10,
+                deltaX: 20,
+                deltaY: 10,
+            },
+        }),
     ],
 };

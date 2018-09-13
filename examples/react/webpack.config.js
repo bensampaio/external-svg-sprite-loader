@@ -28,27 +28,13 @@ module.exports = {
                 ],
                 test: /\.css$/,
             },
-            {
+            ...['complex', 'education', 'glypho'].map((value) => ({
                 loader: require.resolve('../..'),
                 options: {
-                    name: process.env.EXAMPLE_NO_HASH ? 'img/complex.svg' : 'img/complex.[hash].svg',
+                    name: process.env.EXAMPLE_NO_HASH ? `img/${value}.svg` : `img/${value}.[hash].svg`,
                 },
-                test: /complex\/\w+\.svg$/,
-            },
-            {
-                loader: require.resolve('../..'),
-                options: {
-                    name: process.env.EXAMPLE_NO_HASH ? 'img/education.svg' : 'img/education.[hash].svg',
-                },
-                test: /education\/\w+\.svg$/,
-            },
-            {
-                loader: require.resolve('../..'),
-                options: {
-                    name: process.env.EXAMPLE_NO_HASH ? 'img/glypho.svg' : 'img/glypho.[hash].svg',
-                },
-                test: /glypho\/\w+\.svg$/,
-            },
+                test: new RegExp(`${value}/\\w+\\.svg$`),
+            })),
         ],
     },
     optimization: {
@@ -66,7 +52,7 @@ module.exports = {
     output: {
         filename: 'js/[name].js',
         path: path.join(__dirname, 'public', 'build'),
-        publicPath: '/',
+        publicPath: '/build/',
     },
     plugins: [
         new MiniCssExtractPlugin({

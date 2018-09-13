@@ -129,11 +129,12 @@ npm start:dev
 
 And then you can see the result in `http://localhost:3000`.
 
-There's some additional start variants that you may try:
+There's some additional commands that you may try:
 
-- `npm start:hot` to check if sprite updates work with [Hot Module replacement](https://webpack.js.org/guides/hot-module-replacement/)
-- `npm start:no-hash` to check if sprite updates work, even if the outputted file is the same
-- `npm start:hot-no-hash` to check if sprite updates work with [Hot Module replacement](https://webpack.js.org/guides/hot-module-replacement/), even if the outputted file is the same
+- `npm start:dev:hot` to check if sprite updates work with [Hot Module replacement](https://webpack.js.org/guides/hot-module-replacement/).
+- `npm start:dev:no-hash` to check if sprite updates work, even if the outputted file is the same.
+- `npm start:dev:hot-no-hash` to check if sprite updates work with [Hot Module replacement](https://webpack.js.org/guides/hot-module-replacement/), even if the outputted file is the same.
+- `npm run build:prd && npm run start:prd` to test a production build.
 
 ## Contributing
 

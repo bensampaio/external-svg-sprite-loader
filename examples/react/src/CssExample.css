@@ -1,0 +1,19 @@
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.icons li {
+    padding: 10px;
+}
+
+.icons i {
+    display: block;
+    width: 150px;
+    height: 150px;
+    background-size: 150px 150px;
+    background-repeat: no-repeat;
+}

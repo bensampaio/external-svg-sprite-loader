@@ -28,13 +28,13 @@ module.exports = {
                 ],
                 test: /\.css$/,
             },
-            {
+            ...['complex', 'education', 'glypho'].map((value) => ({
                 loader: require.resolve('../..'),
                 options: {
-                    name: process.env.EXAMPLE_NO_HASH ? 'img/sprite.svg' : 'img/sprite.[hash].svg',
+                    name: process.env.EXAMPLE_NO_HASH ? `img/${value}.svg` : `img/${value}.[hash].svg`,
                 },
-                test: /\.svg$/,
-            },
+                test: new RegExp(`${value}/\\w+\\.svg$`),
+            })),
         ],
     },
     optimization: {
@@ -59,6 +59,13 @@ module.exports = {
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css',
         }),
-        new SvgStorePlugin(),
+        new SvgStorePlugin({
+            sprite: {
+                startX: 20,
+                startY: 10,
+                deltaX: 20,
+                deltaY: 10,
+            },
+        }),
     ],
 };

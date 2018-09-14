@@ -1,13 +1,11 @@
 const path = require('path');
 
-const SvgStorePlugin = require('../../lib/SvgStorePlugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = {
-    entry: {
-        main: path.join(__dirname, 'src', 'index.jsx'),
-    },
-    mode: process.env.NODE_ENV || 'development',
+const SvgStorePlugin = require('../../lib/SvgStorePlugin');
+
+const create = () => ({
+    mode: process.env.NODE_ENV,
     module: {
         rules: [
             {
@@ -49,11 +47,6 @@ module.exports = {
             },
         },
     },
-    output: {
-        filename: 'js/[name].js',
-        path: path.join(__dirname, 'public', 'build'),
-        publicPath: '/build/',
-    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
@@ -68,4 +61,39 @@ module.exports = {
             },
         }),
     ],
-};
+});
+
+const configs = [
+    Object.assign(create(), {
+        entry: {
+            main: path.join(__dirname, 'src', 'index.client.jsx'),
+        },
+        name: 'client',
+        output: {
+            filename: 'js/[name].js',
+            path: path.join(__dirname, 'public', 'build'),
+            publicPath: '/build/',
+        },
+    }),
+];
+
+if (process.env.NODE_ENV === 'production') {
+    configs.push(
+        Object.assign(create(), {
+            entry: {
+                main: path.join(__dirname, 'src', 'index.server.jsx'),
+            },
+            externals: /^[a-z\-0-9]+$/,
+            name: 'server',
+            output: {
+                filename: 'js/[name].js',
+                libraryTarget: 'commonjs2',
+                path: path.join(__dirname, 'server', 'build'),
+                publicPath: '/build/',
+            },
+            target: 'node',
+        })
+    );
+}
+
+module.exports = configs;

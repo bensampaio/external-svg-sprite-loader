@@ -64,14 +64,13 @@ module.exports = {
     },
     plugins: [
         new SvgStorePlugin({
-            sprite: 
-                {
-                    startX: 10,
-                    startY: 10,
-                    deltaX: 20,
-                    deltaY: 20,
-                    iconHeight: 20
-                }
+            sprite: {
+                startX: 10,
+                startY: 10,
+                deltaX: 20,
+                deltaY: 20,
+                iconHeight: 20,
+            },
         }),
     ],
 };

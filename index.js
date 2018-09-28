@@ -7,14 +7,14 @@ const loaderUtils = require('loader-utils');
 const SvgStorePlugin = require('./lib/SvgStorePlugin');
 
 /**
- * Default values for every param that can be passed in the loader query.
+ * Default values for every param that can be passed in the loader options.
  * @const
  * @type {Object}
  */
-const DEFAULT_QUERY_VALUES = {
+const DEFAULT_OPTIONS = Object.freeze({
     name: 'img/sprite.svg',
     iconName: 'icon-[name]-[hash:5]',
-    svgoOptions: {
+    svgoOptions: Object.freeze({
         plugins: [
             { collapseGroups: true },
             { convertPathData: true },
@@ -24,8 +24,8 @@ const DEFAULT_QUERY_VALUES = {
             { removeViewBox: false },
             { removeDimensions: true },
         ],
-    },
-};
+    }),
+});
 
 /**
  * Applies SVGO on the SVG file in order to optimize its contents and remove unnecessary attributes for the sprite.
@@ -40,10 +40,10 @@ function loader(content) {
     const callback = this.async();
 
     // Parse the loader query and apply the default values in case no values are provided
-    const query = Object.assign({}, DEFAULT_QUERY_VALUES, loaderUtils.getOptions(this));
+    const options = Object.assign({}, DEFAULT_OPTIONS, loaderUtils.getOptions(this));
 
     // Get the sprite
-    const sprite = SvgStorePlugin.getSprite(query.name);
+    const sprite = SvgStorePlugin.getSprite(options.name);
 
     // Add the icon as a dependency
     addDependency(resourcePath);
@@ -52,13 +52,13 @@ function loader(content) {
     imagemin
         .buffer(content, {
             plugins: [
-                imageminSvgo(query.svgoOptions),
+                imageminSvgo(options.svgoOptions),
             ],
         })
         .then((content) => {
 
             // Create the icon name with the hash of the optimized content
-            const iconName = loaderUtils.interpolateName(this, query.iconName, { content });
+            const iconName = loaderUtils.interpolateName(this, options.iconName, { content });
 
             // Register the sprite and icon
             const icon = sprite.addIcon(resourcePath, iconName, content.toString());
@@ -74,7 +74,7 @@ function loader(content) {
             setImmediate(() => {
                 callback(
                     null,
-                    `var publicPath = ${query.publicPath ? `'${query.publicPath}'` : '__webpack_public_path__'};
+                    `var publicPath = ${options.publicPath ? `'${options.publicPath}'` : '__webpack_public_path__'};
                     var symbolUrl = '${icon.getUrlToSymbol()}';
                     var viewUrl = '${icon.getUrlToView()}';
 

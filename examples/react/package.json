@@ -39,7 +39,7 @@
     "start:dev": "NODE_ENV=development webpack-dev-server --content-base public/ --port 3000",
     "start:dev:hot": "yarn start:dev --hot",
     "start:dev:no-hash": "EXAMPLE_NO_HASH=1 yarn start:dev",
-    "start:dev:hot-no-hash": "EXAMPLE_NO_HASH=1 yarn start:hot",
+    "start:dev:hot-no-hash": "EXAMPLE_NO_HASH=1 yarn start:dev:hot",
     "start:prd": "NODE_ENV=production node server/build/js/main.js",
     "build:prd": "NODE_ENV=production webpack -p"
   },

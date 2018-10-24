@@ -15,7 +15,7 @@ app.use(express.static('public', {
 app.get('*', (request, response) => {
     const content = renderToString(<App />);
 
-    fs.readFile('public/index.html', (err, document) => {
+    fs.readFile('public/index.html', 'utf8', (err, document) => {
         response.send(document.replace('<div id="root"></div>', `<div id="root">${content}</div>`));
     });
 });

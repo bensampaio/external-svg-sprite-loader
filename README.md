@@ -35,7 +35,7 @@ yarn add external-svg-sprite-loader
 ### Plugin options
 
 - `emit` - determines if the sprite is supposed to be emitted (default: true). Useful when generating server rendering bundles where you just need the SVG sprite URLs but not the sprite itself.
-- `sprite` - SVG sprite options (default: {startX: 0, startY: 0, deltaX: 0, deltaY: 0, iconHeight: 50}). StartX and StartY - beginning sprite position, DeltaX and DeltaY - free space between icons. IconHeight - Icon height in the sprite (just for the comfort)
+- `sprite` - SVG sprite options (default: {startX: 0, startY: 0, deltaX: 0, deltaY: 0, iconHeight: 50, rowWidth: 1000}). StartX and StartY - beginning sprite position, DeltaX and DeltaY - space between icons. IconHeight - Icon height in the sprite (just for the comfort).
 
 ## Usage
 
@@ -53,7 +53,7 @@ module.exports = {
     module: {
         rules: [
             {
-                loader: 'external-svg-sprite-loader',
+                loader: SvgStorePlugin.loader,
                 test: /\.svg$/,
             },
         ],
@@ -115,7 +115,7 @@ The imported value will be converted into the `view` url shown above.
 }
 ```
 
-When a SVG gets added, removed or updated, the sprite will be re-generated and all files referencing it will be updated. When no `[hash]` is used in the `name` option, a cache-busting will be added to the URL so that the browser is forced to re-download the sprite.
+When a SVG is added, removed or changed, the sprite will be re-generated and all files referencing it will be updated. When no `[hash]` is used in the `name` option, a cache-busting will be added to the URL so that the browser is forced to re-download the sprite.
 
 ## Examples
 

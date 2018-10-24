@@ -2,9 +2,9 @@ const path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const SvgStorePlugin = require('../../lib/SvgStorePlugin');
+const SvgStorePlugin = require('../..');
 
-const create = () => ({
+const create = ({ emit }) => ({
     mode: process.env.NODE_ENV,
     module: {
         rules: [
@@ -27,7 +27,7 @@ const create = () => ({
                 test: /\.css$/,
             },
             ...['complex', 'education', 'glypho'].map((value) => ({
-                loader: require.resolve('../..'),
+                loader: SvgStorePlugin.loader,
                 options: {
                     name: process.env.EXAMPLE_NO_HASH ? `img/${value}.svg` : `img/${value}.[hash].svg`,
                 },
@@ -53,6 +53,7 @@ const create = () => ({
             chunkFilename: 'css/[id].css',
         }),
         new SvgStorePlugin({
+            emit,
             sprite: {
                 startX: 20,
                 startY: 10,
@@ -64,7 +65,7 @@ const create = () => ({
 });
 
 const configs = [
-    Object.assign(create(), {
+    Object.assign(create({ emit: true }), {
         entry: {
             main: path.join(__dirname, 'src', 'index.client.jsx'),
         },
@@ -79,7 +80,7 @@ const configs = [
 
 if (process.env.NODE_ENV === 'production') {
     configs.push(
-        Object.assign(create(), {
+        Object.assign(create({ emit: false }), {
             entry: {
                 main: path.join(__dirname, 'src', 'index.server.jsx'),
             },

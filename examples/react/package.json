@@ -41,7 +41,8 @@
     "start:dev:no-hash": "EXAMPLE_NO_HASH=1 yarn start:dev",
     "start:dev:hot-no-hash": "EXAMPLE_NO_HASH=1 yarn start:dev:hot",
     "start:prd": "NODE_ENV=production node server/build/js/main.js",
-    "build:prd": "NODE_ENV=production webpack -p"
+    "build:prd": "NODE_ENV=production webpack -p",
+    "build:clean": "rm -rf public/build && rm -rf server/build"
   },
   "version": "3.4.0"
 }

@@ -32,8 +32,7 @@
     "npm": ">=3.8.0"
   },
   "files": [
-    "lib",
-    "index.js"
+    "lib"
   ],
   "keywords": [
     "svg",
@@ -41,14 +40,14 @@
     "webpack-loader"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/SvgStorePlugin.js",
   "name": "external-svg-sprite-loader",
   "repository": {
     "type": "git",
     "url": "http://github.com/Karify/external-svg-sprite-loader.git"
   },
   "scripts": {
-    "lint": "eslint index.js lib examples --ext=js,jsx"
+    "lint": "eslint lib examples --ext=js,jsx"
   },
   "version": "4.0.0-beta.6"
 }

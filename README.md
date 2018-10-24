@@ -46,7 +46,7 @@ If you have the following webpack configuration:
 
 import path from 'path';
 
-import SvgStorePlugin from 'external-svg-sprite-loader/lib/SvgStorePlugin';
+import SvgStorePlugin from 'external-svg-sprite-loader';
 
 module.exports = {
     mode: 'development',

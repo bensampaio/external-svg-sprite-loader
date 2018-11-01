@@ -5,6 +5,8 @@
 
 A loader and plugin for webpack that converts all your SVGs into symbols and merges them into a SVG sprite.
 
+**Important**: There is a breaking change when moving from v3 to v4. Check the [release notes](https://github.com/karify/external-svg-sprite-loader/releases/tag/v4.0.0).
+
 ## Requirements
 
 You will need NodeJS v6+, npm v3+ and webpack 4.

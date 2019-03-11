@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { memo } from 'react';
 
 import apple from '../../images/education/apple.svg';
 import books from '../../images/education/books.svg';
@@ -10,7 +10,7 @@ import styles from './Education.css';
 import SvgExample from './SvgExample.jsx';
 
 const Education = () => (
-    <Fragment>
+    <>
         <h1>Educations icons</h1>
         <CssExample list={Object.values(styles)} />
         <SvgExample list={[
@@ -22,7 +22,7 @@ const Education = () => (
         <div>
             Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepick">Freepick</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" rel="noopener noreferrer" target="_blank" title="Creative Commons BY 3.0">CC 3.0 BY</a>
         </div>
-    </Fragment>
+    </>
 );
 
-export default Education;
+export default memo(Education);

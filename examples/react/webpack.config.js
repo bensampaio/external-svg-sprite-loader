@@ -9,10 +9,12 @@ const create = ({ emit }) => ({
     module: {
         rules: [
             {
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 test: /\.jsx?$/,
             },
             {
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
@@ -27,6 +29,7 @@ const create = ({ emit }) => ({
                 test: /\.css$/,
             },
             ...['complex', 'education', 'glypho'].map((value) => ({
+                exclude: /node_modules/,
                 loader: SvgStorePlugin.loader,
                 options: {
                     name: process.env.EXAMPLE_NO_HASH ? `img/${value}.svg` : `img/${value}.[hash].svg`,

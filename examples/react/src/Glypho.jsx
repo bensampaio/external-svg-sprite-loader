@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { memo } from 'react';
 
 import armchairSilhouette from '../../images/glypho/armchairSilhouette.svg';
 import facebook from '../../images/glypho/facebook.svg';
@@ -17,7 +17,7 @@ import styles from './Glypho.css';
 import SvgExample from './SvgExample.jsx';
 
 const Glypho = () => (
-    <Fragment>
+    <>
         <h1>Glypho icons</h1>
         <CssExample list={Object.values(styles)} />
         <SvgExample list={[
@@ -36,7 +36,7 @@ const Glypho = () => (
         <div>
             Icons made by <a href="https://www.flaticon.com/authors/bogdan-rosu" title="Bogdan Rosu">Bogdan Rosu</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" rel="noopener noreferrer" target="_blank" title="Creative Commons BY 3.0">CC 3.0 BY</a>
         </div>
-    </Fragment>
+    </>
 );
 
-export default Glypho;
+export default memo(Glypho);

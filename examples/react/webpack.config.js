@@ -20,9 +20,10 @@ const create = ({ emit }) => ({
                     {
                         loader: 'css-loader',
                         options: {
-                            modules: true,
+                            modules: {
+                                localIdentName: '[name]--[local]__[hash:base64:5]',
+                            },
                             importLoaders: 1,
-                            localIdentName: '[name]--[local]__[hash:base64:5]',
                         },
                     },
                 ],

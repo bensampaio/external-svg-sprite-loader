@@ -55,6 +55,7 @@ const create = ({ emit }) => ({
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css',
+            ignoreOrder: true,
         }),
         new SvgStorePlugin({
             emit,

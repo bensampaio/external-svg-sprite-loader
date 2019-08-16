@@ -20,9 +20,9 @@
   },
   "description": "A webpack loader and plugin that generate SVG sprites out of a collection of SVG files used in your JS and CSS files",
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-plugin-react": "^7.14.2",
-    "webpack": "^4.35.2"
+    "eslint": "^6.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "webpack": "^4.39.2"
   },
   "peerDependencies": {
     "webpack": "^4.1.0"

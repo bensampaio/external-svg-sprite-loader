@@ -49,5 +49,5 @@
   "scripts": {
     "lint": "eslint lib examples --ext=js,jsx"
   },
-  "version": "5.0.0"
+  "version": "5.0.1"
 }

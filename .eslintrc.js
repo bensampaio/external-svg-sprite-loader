@@ -13,9 +13,12 @@ module.exports = {
     },
     "parserOptions": {
         "ecmaFeatures": {},
+        "ecmaVersion": 2019,
         "sourceType": "module"
     },
-    "plugins": [],
+    "plugins": [
+        "react"
+    ],
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-spacing": "error",
@@ -145,5 +148,10 @@ module.exports = {
         "space-unary-ops": "error",
         "spaced-comment": "error",
         "yield-star-spacing": "error"
-    }
+    },
+    "settings": {
+        "react": {
+            "version": "detect",
+        },
+    },
 };

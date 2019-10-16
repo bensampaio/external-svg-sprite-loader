@@ -121,7 +121,7 @@ When a SVG is added, removed or changed, the sprite will be re-generated and all
 
 ## Examples
 
-You can find working examples in the `examples/react` folder. To test them under the `examples/react` folder run:
+You can find working examples in the `examples` folder. To test the React example under the `examples/react` folder run:
 
 ```bash
 npm install

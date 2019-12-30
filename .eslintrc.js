@@ -30,8 +30,14 @@ module.exports = {
         ],
         "brace-style": "error",
         "comma-dangle": [
-            "error",
-            "always-multiline"
+            'error',
+            {
+                arrays: 'always-multiline',
+                exports: 'always-multiline',
+                functions: 'only-multiline',
+                imports: 'always-multiline',
+                objects: 'always-multiline',
+            },
         ],
         "comma-spacing": [
             "error",

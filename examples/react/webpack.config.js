@@ -16,10 +16,16 @@ const create = ({ emit }) => ({
             {
                 exclude: /node_modules/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            esModule: true,
+                        },
+                    },
                     {
                         loader: 'css-loader',
                         options: {
+                            esModule: true,
                             modules: {
                                 localIdentName: '[name]--[local]__[hash:base64:5]',
                             },

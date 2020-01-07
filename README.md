@@ -32,7 +32,7 @@ yarn add external-svg-sprite-loader
 - `name` - relative path to the sprite file (default: `img/sprite.svg`). The `[hash]` placeholder is supported.
 - `iconName` - name for the icon symbol (default: `icon-[name]-[hash:5]`).
 - `publicPath` - custom public path to be used instead of webpack `output.publicPath`. This option might be useful when your webpack `output.publicPath` is set to a different scheme/host/port (e.g.: when you use a CDN). This is because currently the SVG sprite cannot be served from another domain ([read more](https://stackoverflow.com/questions/32850536/cross-domain-svg-sprite)).
-- `svgoOptions` - custom options to be passed to svgo.
+- `svgoOptions` - custom options to be passed to svgo. If you set this option then make sure you add `{ removeViewBox: false }` to the `plugins` otherwise this loader won't work.
 
 ### Plugin options
 

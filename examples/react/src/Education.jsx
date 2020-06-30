@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import apple from '../../images/education/apple.svg';
 import books from '../../images/education/books.svg';
@@ -25,4 +25,4 @@ const Education = () => (
     </>
 );
 
-export default memo(Education);
+export default Education;

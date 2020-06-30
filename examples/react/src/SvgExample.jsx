@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { array } from 'prop-types';
 
 import styles from './SvgExample.css';
@@ -25,4 +25,4 @@ SvgExample.propTypes = {
     list: array.isRequired,
 };
 
-export default memo(SvgExample);
+export default SvgExample;

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import tail from '../../images/complex/tail.svg';
 
@@ -14,4 +14,4 @@ const Complex = () => (
     </>
 );
 
-export default memo(Complex);
+export default Complex;

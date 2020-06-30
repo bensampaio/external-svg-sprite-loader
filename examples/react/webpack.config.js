@@ -1,4 +1,5 @@
 const path = require('path');
+const { EnvironmentPlugin } = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -58,6 +59,10 @@ const create = ({ emit }) => ({
         },
     },
     plugins: [
+        new EnvironmentPlugin({
+            EXAMPLE_HMR: false,
+            EXAMPLE_NO_HASH: false,
+        }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             chunkFilename: 'css/[id].css',
@@ -78,13 +83,18 @@ const create = ({ emit }) => ({
 const configs = [
     Object.assign(create({ emit: true }), {
         entry: {
-            main: path.join(__dirname, 'src', 'index.client.jsx'),
+            main: ['react-hot-loader/patch', path.join(__dirname, 'src', 'index.client.jsx')],
         },
         name: 'client',
         output: {
             filename: 'js/[name].js',
             path: path.join(__dirname, 'public', 'build'),
             publicPath: '/build/',
+        },
+        devServer: {
+            contentBase: 'public/',
+            hot: !!process.env.EXAMPLE_HMR,
+            port: 3000,
         },
     }),
 ];

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import armchairSilhouette from '../../images/glypho/armchairSilhouette.svg';
 import facebook from '../../images/glypho/facebook.svg';
@@ -39,4 +39,4 @@ const Glypho = () => (
     </>
 );
 
-export default memo(Glypho);
+export default Glypho;

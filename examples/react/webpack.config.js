@@ -26,7 +26,6 @@ const create = ({ emit }) => ({
                     {
                         loader: 'css-loader',
                         options: {
-                            esModule: true,
                             modules: {
                                 localIdentName: '[name]--[local]__[hash:base64:5]',
                             },

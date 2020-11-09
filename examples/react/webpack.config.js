@@ -2,10 +2,18 @@ const path = require('path');
 const { EnvironmentPlugin } = require('webpack');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const SvgStorePlugin = require('../..');
 
-const create = ({ emit }) => ({
+const spriteLayout = {
+    startX: 20,
+    startY: 10,
+    deltaX: 20,
+    deltaY: 10,
+};
+
+const baseConfig = {
     mode: process.env.NODE_ENV,
     module: {
         rules: [
@@ -39,7 +47,7 @@ const create = ({ emit }) => ({
                 exclude: /node_modules/,
                 loader: SvgStorePlugin.loader,
                 options: {
-                    name: process.env.EXAMPLE_NO_HASH ? `img/${value}.svg` : `img/${value}.[hash].svg`,
+                    name: process.env.EXAMPLE_NO_HASH ? `img/${value}.svg` : `img/${value}.[contenthash].svg`,
                 },
                 test: new RegExp(`${value}/\\w+\\.svg$`),
             })),
@@ -63,58 +71,77 @@ const create = ({ emit }) => ({
             EXAMPLE_NO_HASH: false,
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[id].css',
+            filename: 'css/[name].[contenthash].css',
+            chunkFilename: 'css/[id].[contenthash].css',
             ignoreOrder: true,
         }),
-        new SvgStorePlugin({
-            emit,
-            sprite: {
-                startX: 20,
-                startY: 10,
-                deltaX: 20,
-                deltaY: 10,
-            },
-        }),
     ],
-});
+};
 
 const configs = [
-    Object.assign(create({ emit: true }), {
+    {
+        ...baseConfig,
+        devServer: {
+            contentBase: 'public/',
+            historyApiFallback: {
+                index: '/build/index.html',
+            },
+            hot: !!process.env.EXAMPLE_HMR,
+            port: 3000,
+            publicPath: '/build/',
+        },
         entry: {
             main: ['react-hot-loader/patch', path.join(__dirname, 'src', 'index.client.jsx')],
         },
         name: 'client',
         output: {
-            filename: 'js/[name].js',
+            filename: 'js/[name].[contenthash].js',
             path: path.join(__dirname, 'public', 'build'),
             publicPath: '/build/',
         },
-        devServer: {
-            contentBase: 'public/',
-            hot: !!process.env.EXAMPLE_HMR,
-            port: 3000,
-        },
-    }),
+        plugins: [
+            ...baseConfig.plugins,
+            new HtmlWebpackPlugin({
+                templateContent: `
+                    <!DOCTYPE html>
+                    <html lang="en">
+                        <head>
+                            <title>React Example | External SVG Sprite Loader</title>
+                        </head>
+                        <body>
+                            <div id="root"></div>
+                        </body>
+                    </html>
+                `,
+            }),
+            new SvgStorePlugin({ sprite: spriteLayout }),
+        ],
+    },
 ];
 
 if (process.env.NODE_ENV === 'production') {
-    configs.push(
-        Object.assign(create({ emit: false }), {
-            entry: {
-                main: path.join(__dirname, 'src', 'index.server.jsx'),
-            },
-            externals: /^[a-z\-0-9]+$/,
-            name: 'server',
-            output: {
-                filename: 'js/[name].js',
-                libraryTarget: 'commonjs2',
-                path: path.join(__dirname, 'server', 'build'),
-                publicPath: '/build/',
-            },
-            target: 'node',
-        })
-    );
+    configs.push({
+        ...baseConfig,
+        entry: {
+            main: path.join(__dirname, 'src', 'index.server.jsx'),
+        },
+        externals: /^[a-z\-0-9]+$/,
+        name: 'server',
+        output: {
+            filename: 'js/[name].js',
+            libraryTarget: 'commonjs2',
+            path: path.join(__dirname, 'server', 'build'),
+            publicPath: '/build/',
+        },
+        plugins: [
+            ...baseConfig.plugins,
+            new SvgStorePlugin({
+                emit: false,
+                sprite: spriteLayout,
+            }),
+        ],
+        target: 'node',
+    });
 }
 
 module.exports = configs;

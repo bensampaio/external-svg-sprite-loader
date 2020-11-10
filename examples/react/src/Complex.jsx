@@ -1,5 +1,3 @@
-import React from 'react';
-
 import tail from '../../images/complex/tail.svg';
 
 import CssExample from './CssExample.jsx';

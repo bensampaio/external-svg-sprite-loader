@@ -5,7 +5,7 @@ module.exports = {
                 esmodules: true,
             },
         }],
-        '@babel/preset-react',
+        ['@babel/preset-react', { runtime: 'automatic' }],
     ],
     plugins: ['react-hot-loader/babel'],
 };

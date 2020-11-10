@@ -1,7 +1,6 @@
 import express from 'express';
 import fs from 'fs';
 import http from 'http';
-import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 import App from './App.jsx';

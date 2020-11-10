@@ -131,6 +131,8 @@ module.exports = {
             'error',
             'single',
         ],
+        'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
         'require-jsdoc': [
             'warn',
             {

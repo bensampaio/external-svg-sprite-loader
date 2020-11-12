@@ -1,16 +1,9 @@
 {
   "author": {
-    "name": "Karify B.V.",
-    "email": "questions@karify.com",
-    "url": "https://www.karify.com"
+    "name": "Bruno Sampaio",
+    "email": "bens.sampaio@gmail.com",
+    "url": "https://bensampaio.github.io/"
   },
-  "contributors": [
-    {
-      "name": "Bruno Sampaio",
-      "email": "bruno.sampaio@karify.com",
-      "url": "http://bensampaio.github.io/"
-    }
-  ],
   "dependencies": {
     "cheerio": "^0.22.0",
     "imagemin": "^7.0.1",
@@ -44,7 +37,7 @@
   "name": "external-svg-sprite-loader",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Karify/external-svg-sprite-loader.git"
+    "url": "http://github.com/bensampaio/external-svg-sprite-loader.git"
   },
   "scripts": {
     "lint": "eslint '**/*.{js,jsx}'"

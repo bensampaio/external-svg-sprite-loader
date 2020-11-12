@@ -1,16 +1,9 @@
 {
   "author": {
-    "name": "Karify B.V.",
-    "email": "questions@karify.com",
-    "url": "https://www.karify.com"
+    "name": "Bruno Sampaio",
+    "email": "bens.sampaio@gmail.com",
+    "url": "https://bensampaio.github.io/"
   },
-  "contributors": [
-    {
-      "name": "Bruno Sampaio",
-      "email": "bruno.sampaio@karify.com",
-      "url": "http://bensampaio.github.io/"
-    }
-  ],
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
@@ -30,12 +23,12 @@
   },
   "description": "A usage example for the external-svg-sprite-loader for Webpack and React.",
   "engines": {
-    "node": ">=6.2.0",
+    "node": ">=10.13.0",
     "npm": ">=3.8.0"
   },
   "license": "MIT",
-  "main": "index.js",
   "name": "external-svg-sprite-loader-react-example",
+  "private": true,
   "scripts": {
     "start:dev": "NODE_ENV=development webpack serve",
     "start:dev:hot": "EXAMPLE_HMR=1 yarn start:dev",
@@ -45,5 +38,5 @@
     "build:prd": "NODE_ENV=production webpack",
     "build:clean": "rm -rf public/build && rm -rf server/build"
   },
-  "version": "3.4.0"
+  "version": "0.0.0"
 }

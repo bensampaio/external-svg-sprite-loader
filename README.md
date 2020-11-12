@@ -1,11 +1,11 @@
 # External SVG Sprite
 
 [![npm version](https://badge.fury.io/js/external-svg-sprite-loader.svg)](https://badge.fury.io/js/external-svg-sprite-loader)
-[![Build Status](https://travis-ci.org/karify/external-svg-sprite-loader.svg?branch=master)](https://travis-ci.org/karify/external-svg-sprite-loader)
+[![Build Status](https://travis-ci.org/bensampaio/external-svg-sprite-loader.svg?branch=master)](https://travis-ci.org/bensampaio/external-svg-sprite-loader)
 
 A loader and plugin for webpack that converts all your SVGs into symbols and merges them into a SVG sprite.
 
-**Important**: There is a breaking change when moving from v3 to v4. Check the [release notes](https://github.com/karify/external-svg-sprite-loader/releases/tag/v4.0.0).
+**Important**: There is a breaking change when moving from v3 to v4. Check the [release notes](https://github.com/bensampaio/external-svg-sprite-loader/releases/tag/v4.0.0).
 
 ## Requirements
 
